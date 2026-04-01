@@ -1,0 +1,83 @@
+/*COP 2220  (program4.c) - larger program
+//Hello, My name is Chandler Isma!
+This is an assignment where I will be making a program where you purchase tickets!*/
+
+#define _CRT_SECURE_NO_WARNINGS //for Visual studio compiler
+#pragma warning(disable:6031) //ignore scanf warnings
+
+#include<stdio.h> //for printf and scanf
+
+//function prototypes
+
+void Greeting(void) {
+    printf("Welcome to the concert purchasing app!\nWe offer discounted tickets to six of the year's best concert events!");
+    printf("\n\nYou will be shown a list of the available options!");
+    printf("\nPlease select the number for the ticket that you wish to buy.");
+    printf("\nNext, you will enter the amount of tickets that you wish to buy.");
+    printf("\n\nIf you do not have enough money to cover the purchase,\n");
+    printf("you will be given the option to add money to your account until you have enough to make the purchase.");
+    printf("\n\n\n\n\n");
+}
+int DisplayEventSelections() {
+    int choice;
+    printf("Here are the convert tickets that are available for purchase:\n");
+    printf("1. 1 Isaiah Rashad concert ticket: $90.00\n");
+    printf("2. 1 World Cup ticket: $1,050.00\n");
+    printf("3. 1 SUPER BOWL ticket: $925.00\n");
+    printf("4. 1 Steve Lacy ticket: $75.00\n");
+    printf("5. 1 Kali Uchis ticket: $150.00\n");
+    printf("6. 1 Arizona Cardinals Game ticket: $225.00\n\n");
+    printf("Enter your selection (1-6):");
+    scanf("%d", &choice);
+    return choice;
+}
+double EventTotal(int itemNumber) {
+    double price;
+    int numtickets;
+    if (itemNumber == 1) price = 90.00; if (itemNumber == 2) price = 1050.00;
+    if (itemNumber == 3) price = 925.00; if (itemNumber == 4) price = 75.00;
+    if (itemNumber == 5) price = 150.00; if (itemNumber == 6) price = 225.00;
+    printf("The price per ticket is $%.2f.", price);
+    printf("\nHow many tickets?"); scanf("%d", &numtickets);
+    printf("\n--------------------------------------------------\n");
+    return numtickets * price;
+}
+void DisplayBalance(double accountBalance) {
+    printf(" you have $%.2f in your account\n\n", accountBalance);
+}
+double addMoney(double accountBalance) {
+    double money;
+    printf("Enter the amount you want to add: ");
+    scanf("%lf", &money);
+    printf("\n---------------------------------------------------\n");
+    accountBalance = accountBalance + money;
+    return accountBalance;    
+}
+double CheckForEnoughMoney(double accountBalance, double totalPrice) {
+    while (totalPrice > accountBalance) {
+        printf("The total is $%.2f and", totalPrice);
+        DisplayBalance(accountBalance);
+        accountBalance = addMoney(accountBalance);
+    }
+    printf("The total is $%.2f and you have $%.2f in your account\n\n", totalPrice, accountBalance);
+    printf("... You are now purchasing the tickets you ordered ...\n");
+    accountBalance = accountBalance - totalPrice; 
+    return accountBalance; 
+}
+
+int main()
+{
+    int numtickets, num;
+    double accountBalance = 50.00;
+    Greeting();
+    printf("You have $%.2f available in your account\n", accountBalance);
+    printf("\n----------------------------------------------------\n");
+    int itemNumber = DisplayEventSelections();
+    double totalPrice = EventTotal(itemNumber);
+    double remainingBalance = CheckForEnoughMoney(accountBalance, totalPrice);
+    printf("Enter any key to see your remaining balance: ");
+    scanf("%d", &num);
+    printf("\nYou have $%.2f available in your account\n", remainingBalance);
+    printf("\n\nThank you for purchasing tickets using this app\nHave a nice day!");
+    return 0;
+}
