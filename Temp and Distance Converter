@@ -1,0 +1,94 @@
+/* Chandler Isma
+ * 9/18/22
+ * Hello, I will be making a interactive program that converts temperature and distance!
+ */
+
+#define _CRT_SECURE_NO_WARNINGS //for Visual Studio compiler
+#pragma warning(disable:6031) //ignore scanf warnings
+
+#include<stdio.h> //for printf and scanf
+
+ //function prototypes here
+ // 
+  //greets the user
+  //asks, get, and returns the first initial
+char Greeting();
+
+//input: the users initial 
+//asks and gets kilometers, converts to miles
+//prints the results
+void KmsToMiles(char initial);
+
+//input: the users initial 
+//asks and gets miles, converts to kilometers
+//prints the results
+void MilesToKms(char initial);
+
+//input: the users initial 
+//asks and gets the temperature in celcius
+//converts to farenheit
+//prints the results
+void CelsiusToFahrenheit(char initial);
+
+//input: the users initial 
+//asks and gets the temperature in farenheit
+//converts to celcius
+//prints the results
+void FahrenheitToCelsius(char initial);
+
+
+int main()
+{
+	char initial_in_main;
+	initial_in_main = Greeting();
+	//add the other function calls here
+
+	printf("\n%c., Have a Great Day!", initial_in_main);
+	return 0;
+}
+
+//function definiitons here
+char Greeting()
+{
+	char initial_in_Greeting;
+	printf("\nPlease enter your first initial:");
+	scanf(" %c", &initial_in_Greeting);
+	printf("\nWelcome to the temperature and Distance Calculator!");
+	return initial_in_Greeting;
+}
+
+void KmsToMiles(char initial){
+	double KmsToMiles;
+	double km, miles;
+printf("\nYou will enter kilometers and it will convert to miles!");
+scanf(" %lf", &km);
+miles = km * 0.62137;
+printf("\nYou Entered %lf and got %lf!\n", km, miles);
+}
+
+void MilesToKms(char initial){
+	double MilesToKms;
+	double km, miles;
+	printf("\nYou will enter miles and it will convert to kilometers!");
+	scanf(" %lf", &miles);
+	km = miles * 1.609344;
+	printf("\nYou Entered %lf and got %lf!\n", miles, km);
+}
+
+void CelsiusToFahrenheit(char initial){
+	double CelToFahren;
+	double celsius, fahrenheit;
+	printf("\nYou will enter Celsius, and it'll get converted into Fahrenheit!");
+	scanf(" %lf", &celsius);
+	fahrenheit = celsius * 1.8 + 32;
+	printf("\nYou Entered %lf and got %lf!\n", celsius, fahrenheit);
+}
+
+void FahrenheitToCelsius(char initial) {
+	double FahrenToCel;
+	double celsius, fahrenheit;
+	printf("\nYou will enter fahrenheit, and it'll get converted into celsius!");
+	scanf(" %lf", &fahrenheit);
+	celsius = fahrenheit * .5556 - 32;
+	printf("\nYou Entered %lf and got %lf!\n", fahrenheit, celsius);
+}
