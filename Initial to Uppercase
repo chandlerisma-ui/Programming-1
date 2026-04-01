@@ -1,0 +1,49 @@
+/*Chandler Isma
+ * Hello, Today I will be comprising a code that changes your Initials to Uppercase upon entry!
+ *9/8/2022
+ */
+
+#define _CRT_SECURE_NO_WARNINGS //for Visual Studio compiler
+#pragma warning(disable:6031) //ignore scanf warnings
+#include<stdio.h> //for printf and scanf
+#include<ctype.h> //toupper and tolower
+
+int main()
+{
+	char initial;
+
+	printf("Hello! My name is Chandler Isma\n");
+
+	//lowercase part of the function
+	printf("Enter your first initial!\n");
+	scanf(" %c", &initial);
+	char lowerInitial = tolower(initial);
+	printf("\n You Entered %c and lowercase is %c\n", initial, lowerInitial);
+
+	//uppercase part of the function
+	printf("Enter your second initial!\n");
+	scanf(" %c", &initial);
+	char upperInitial = toupper(initial);
+	printf("\n You Entered %c and Uppercase is %c\n", initial, upperInitial);
+
+	//third part
+	double input;
+	int secondinput;
+	double product;
+	printf("Enter a whole number here!\n");
+	scanf(" %lf", &input);
+	printf("Enter another one!\n");
+	scanf(" %f", &secondinput);
+
+	product = input * secondinput;
+	printf("\n You entered %lf and %f and got %lf!\n", input, secondinput, product);
+
+
+
+
+
+
+	
+	
+	return 0;
+}
