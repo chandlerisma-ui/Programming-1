@@ -1,0 +1,98 @@
+/*COP 2220  (program 6) -
+//Hello, my name is Chandler Isma, and today I will be making a Gas Station Program!*/
+
+#include <stdio.h>
+#include <ctype.h>
+#define GAS_PRICE 2.25
+#define _CRT_SECURE_NO_WARNINGS //for Visual Studio compiler
+#pragma warning(disable:6031) //ignore scanf warnings 
+//function prototype
+
+void Greeting()
+{
+	printf("\n----------------------------------------------------\n");
+	printf("\nHello!, Welcome to the Gas Station Program!\n");
+	printf("\n----------We have the best prices for Gas!----------\n");
+
+}
+void ViewAndGetSelection(char* selectionPtr)
+{
+	printf("\nWhat would you like to do?\n");
+	printf("\nPlease Select from the following Options!\n");
+	printf("\n'E' to view the Gas Purchase Options!\n");
+	printf("\n'T' to Purchase some Gas!\n");
+	printf("\n'B' to View your account Balance!\n");
+	printf("\n'A' to Add money to your account!\n");
+	printf("\n'Q' to Quit the program!\n");
+	printf("\nPlease select from the options above!\n");
+	scanf("%f", selectionPtr);
+}
+void ProcessSelection(char selectionPtr, double* balanceInMain)
+{
+	if (selectionPtr == 'E')
+	{
+		printf("\n-----------------------------------------");
+		printf("\nYou chose %c", selectionPtr);
+		printf("\nThe Gas price is $%.2f/per gallon", GAS_PRICE);
+		printf("\n-----------------------------------------");
+	}
+	else if (selectionPtr == 'T')
+	{
+		float quantity, price;
+		printf("\n-----------------------------------------");
+		printf("\nYou selected %c", selectionPtr);
+		printf("\nHow much gas would you like to purchase?");
+		scanf("%d", &quantity);
+		price = quantity * GAS_PRICE;
+		if (*balanceInMain > price)
+			*balanceInMain = *balanceInMain - price;
+		else
+			printf("\nPlease add money to your account!");
+		printf("\n-----------------------------------------");
+	}
+	else if (selectionPtr == 'B')
+	{
+		printf("\n-----------------------------------------");
+		printf("\nYou chose %c", selectionPtr);
+		printf("\nYour current balance is : $%.2f!", *balanceInMain);
+		printf("\n-----------------------------------------");
+
+	}
+	else if (selectionPtr == 'A')
+	{
+		float money;
+		printf("\n-----------------------------------------");
+		printf("\nYou chose %c", selectionPtr);
+		printf("\nHow much money would you like to add?");
+		scanf("%f", &money);
+		*balanceInMain = *balanceInMain + money;
+		printf("\n-----------------------------------------");
+	}
+	else
+	{
+		printf("\n-----------------------------------------");
+		printf("\nYou chose %c", selectionPtr);
+		printf("\nThis is not one of the options!");
+		printf("\n-----------------------------------------");
+	}
+}
+
+void Greeting();
+void ViewAndGetSelection(char* selectionPtr);
+void ProcessSelection(char selection, double* balancePtr);
+int main()
+{
+	char choiceInMain;
+	double balanceInMain = 0.00;
+	Greeting();
+	ViewAndGetSelection(&choiceInMain);
+	choiceInMain = toupper(choiceInMain);
+	while (choiceInMain != 'Q')
+	{
+		ProcessSelection(choiceInMain, &balanceInMain);
+		ViewAndGetSelection(&choiceInMain);
+		choiceInMain = toupper(choiceInMain);
+	}
+	printf("\nCome back again!");
+	return 0;
+}
